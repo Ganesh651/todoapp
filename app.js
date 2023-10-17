@@ -59,3 +59,10 @@ app.delete("/todo/:id", async(request,response)=>{
       const dbResponse = await db.run(deleteTodoQuery)
       response.send("Todo Deleted")
 })
+
+
+app.get("/todo", async(request,response)=>{
+      const getTodos = `select * from todo`
+      const dbResponse = await db.all(getTodos)
+      response.send(dbResponse)
+})
