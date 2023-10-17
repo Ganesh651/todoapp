@@ -1,0 +1,12 @@
+###
+POST http://localhost:4000/todo
+Content-Type: application/json
+
+{
+      "todo":"Deposite Money",
+      "Date": null,
+      "time": null,
+}
+###
+
+DELETE  http://localhost:4000/todo/17
