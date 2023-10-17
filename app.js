@@ -66,3 +66,33 @@ app.get("/todo", async(request,response)=>{
       const dbResponse = await db.all(getTodos)
       response.send(dbResponse)
 })
+
+
+app.get("/todo/:id", async (request,response)=>{
+      const {id} = request.params 
+
+      const getTodo = `select * from todo where id =${id}`
+      const dbResponse = await db.get(getTodo)
+      response.send(dbResponse)
+})
+
+
+app.put("/todo/:id", async(request,response)=>{
+      const {id} = request.params
+      const {todo} = request.body
+
+      const dateValue = new Date()
+      const today = dateValue.getDate()
+      const thisMonth = dateValue.getMonth()
+      const thisYear = dateValue.getFullYear()
+
+      const hours = dateValue.getHours()
+      const minutes = dateValue.getMinutes()
+
+      const formatedDate = today+"/"+(thisMonth+1)+"/"+thisYear
+      const formatedTime = hours+":"+minutes
+
+      const updateTodo = `update todo set todo="${todo}",date="${formatedDate}",time="${formatedTime}" where id = ${id}`
+      const dbResponse = await db.run(updateTodo)
+      response.send("Todo Updated")
+})

@@ -13,3 +13,16 @@ DELETE  http://localhost:4000/todo/17
 ###
 
 GET http://localhost:4000/todo
+###
+
+GET http://localhost:4000/todo/21
+###
+
+PUT http://localhost:4000/todo/21
+Content-Type: application/json
+
+{
+      "todo":"Go To Bank",
+      "date": null,
+      "time": null
+}
