@@ -33,7 +33,7 @@ const initializeDBAndServer = async ()=>{
 initializeDBAndServer();
 
 app.post("/todo",async(request,response)=>{
-      const {todo} = request.body
+      const {todo,completed} = request.body
 
       const dateValue = new Date()
       const today = dateValue.getDate()
@@ -46,7 +46,7 @@ app.post("/todo",async(request,response)=>{
       const formatedDate = today+"/"+(thisMonth+1)+"/"+thisYear
       const formatedTime = hours+":"+minutes
 
-      const createTodoQuery = `INSERT INTO todo (todo,date,time) VALUES("${todo}","${formatedDate}","${formatedTime}");`
+      const createTodoQuery = `INSERT INTO todo (todo,date,time,completed) VALUES("${todo}","${formatedDate}","${formatedTime}","${completed}");`
       const dbResponse = await db.run(createTodoQuery)
       const lastId = dbResponse.lastID
       response.send("Created")
@@ -79,7 +79,7 @@ app.get("/todo/:id", async (request,response)=>{
 
 app.put("/todo/:id", async(request,response)=>{
       const {id} = request.params
-      const {todo} = request.body
+      const {todo,completed} = request.body
 
       const dateValue = new Date()
       const today = dateValue.getDate()
@@ -92,7 +92,7 @@ app.put("/todo/:id", async(request,response)=>{
       const formatedDate = today+"/"+(thisMonth+1)+"/"+thisYear
       const formatedTime = hours+":"+minutes
 
-      const updateTodo = `update todo set todo="${todo}",date="${formatedDate}",time="${formatedTime}" where id = ${id}`
+      const updateTodo = `update todo set todo="${todo}",date="${formatedDate}",time="${formatedTime}",completed="${completed}" where id = ${id}`
       const dbResponse = await db.run(updateTodo)
       response.send("Todo Updated")
 })

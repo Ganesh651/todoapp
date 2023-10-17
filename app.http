@@ -6,6 +6,7 @@ Content-Type: application/json
       "todo":"Deposite Money",
       "Date": null,
       "time": null,
+      "completed": "false"
 }
 ###
 
@@ -18,11 +19,12 @@ GET http://localhost:4000/todo
 GET http://localhost:4000/todo/21
 ###
 
-PUT http://localhost:4000/todo/21
+PUT http://localhost:4000/todo/18
 Content-Type: application/json
 
 {
       "todo":"Go To Bank",
       "date": null,
-      "time": null
+      "time": null,
+      "completed": "false"
 }
